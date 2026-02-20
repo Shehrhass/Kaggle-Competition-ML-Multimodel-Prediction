@@ -76,7 +76,6 @@ preprocessor = ColumnTransformer(
     ])
 
 # hyperparamter tuning 
-
 xgb_pipeline = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('model', XGBRegressor(random_state=42))
@@ -99,7 +98,7 @@ Y_pred_log = best_model.predict(X_val)
 val_rmse = root_mean_squared_error(Y_val, Y_pred_log)
 print(f"Validation Log-RMSE: {val_rmse:.4f}")
 
-#multi-model hyperparamter tuning
+# multi-model hyperparamter tuning
 models_and_grids = {
     "Linear Regression": {
         "model": LinearRegression(),
@@ -127,7 +126,7 @@ best_overall_model = None
 best_overall_name = ""
 model_results = {}
 
-# Create the pipeline for this specific model
+# Creating  pipeline for this specific model
 for name, config in models_and_grids.items():
     print(f"Training {name}")
     pipeline = Pipeline(steps=[('preprocessor', preprocessor), ('model', config["model"])])
